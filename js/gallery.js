@@ -86,3 +86,16 @@ const makeGallery = (images) => {
 
 const gallery = document.querySelector(".gallery");
 gallery.innerHTML = makeGallery(images);
+
+const onGalleryClick = (event) => {
+  event.preventDefault();
+  if (event.target.classList.contains("gallery-image")) {
+    const instance = basicLightbox.create(`
+      <img src="${event.target.dataset.source}" width="800" height="600">      
+`);
+    console.log(instance.element());
+    instance.show();
+  }
+};
+
+gallery.addEventListener("click", onGalleryClick);
